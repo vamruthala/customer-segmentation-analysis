@@ -1,9 +1,6 @@
 # Business Requirements Summary
 
-*Condensed from Assignment 7; not a formally approved BRD.*
-
-- **Business question:** How do customer spending patterns group into useful segments?
-- **Decision supported:** Tailor and test offers using segment profiles.
-- **Scope:** Six category-spend features; Tableau produced two clusters; report profiles spend, income, and household composition.
-- **Success measures:** Segment size/share and interpretable profiles; business response must be measured in a later test.
-- **Open items:** Exact clustering settings, source data, and cluster-stability evaluation are not provided.
+- **Business question:** I asked how customer spending patterns can be grouped into useful segments.
+- **Decision supported:** I use segment profiles to tailor and test offers.
+- **Scope:** I compare six category-spend features and profile cluster size, spending, income, and household composition.
+- **Success measures:** I review segment size/share, profile clarity, and response to segment-specific tests.
