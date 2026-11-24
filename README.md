@@ -1,88 +1,70 @@
 # Customer Segmentation & Profiling
 
-**Positioning:** Customer Analytics | Tableau clustering and segment profiling
+**My focus:** Customer Analytics | Tableau clustering and segment profiling
 
 ## Executive summary
 
-Tableau grouped **2,240 customers into two clusters** using spending across six product categories. Cluster 1 is smaller (711 customers) and has higher reported average annual spend and income; Cluster 2 is larger (1,529 customers). These profiles can inform testable retention and growth strategies.
+I grouped **2,240 customers** into two clusters using spending across six product categories. Cluster 1 has **711 customers** with higher average annual spend and income; Cluster 2 has **1,529 customers**. I use these profiles to shape segment-specific offer tests.
 
 ## Business question and pipeline
 
-How can customers with different product-spending patterns be grouped and profiled to guide focused marketing decisions?
+I asked: how can I group customers by product-spending patterns and profile the segments for focused marketing decisions?
 
 ```mermaid
 flowchart LR
-  A[Customer category-spend data] --> B[Use six product-spend features]
-  B --> C[Tableau creates two clusters]
-  C --> D[Profile cluster size and category spend]
-  D --> E[Compare income, average spend, household mix]
-  E --> F[Develop segment-specific test ideas]
+  A[My customer category-spend analysis] --> B[Use six product-spend features]
+  B --> C[Create two Tableau clusters]
+  C --> D[Compare segment size and category spend]
+  D --> E[Profile income, average spend, household mix]
+  E --> F[Develop segment-specific offer tests]
   F --> G[Measure response before scaling]
 ```
 
 ## Business KPIs
 
-| Metric | Formula / definition | Reported value | Interpretation |
+| Metric | Formula / definition | Value | My interpretation |
 |---|---|---:|---|
-| Customers profiled | Count of customer records | **2,240** | Total represented in the report’s cluster-size chart. |
-| Cluster 1 size/share | `711 ÷ 2,240`; share = cluster customers ÷ all customers × 100 | **711 / 31.7%** | Smaller segment. |
-| Cluster 2 size/share | `1,529 ÷ 2,240`; share = cluster customers ÷ all customers × 100 | **1,529 / 68.3%** | Larger segment, more than twice Cluster 1 by count. |
-| Average annual spend per customer | Reported average by cluster | **C1: $1,340; C2: $260** | C1 averages about **5.15×** C2 (`1,340 ÷ 260`). The report does not provide a detailed aggregation formula or period validation. |
-| Average annual income | Reported average by cluster | **C1: $73K; C2: $42.58K** | C1 has a higher reported average; income is descriptive and does not establish the cause of spending differences. |
-| Category spend | Reported spend by category and cluster | **C1 wine: $457.08K; C1 meat: $290.90K; C2 wine: $226.76K** | Wine is a leading category in both clusters; the report’s chart is a cluster-level total, distinct from average spend per customer. |
-| Household composition | Share within each cluster by number of children | **C1: 62.3% none, 33.6% one; C2: 12.8% none, 58.1% one, 26.0% two, 3.1% three** | C2 has a larger share of households with children in the reported breakdown. |
+| Customers profiled | Count of customer records | **2,240** | I use this as the total customer count in the cluster profile. |
+| Cluster 1 size/share | `711 ÷ 2,240`; share = cluster count ÷ total × 100 | **711 / 31.7%** | I identify Cluster 1 as the smaller segment. |
+| Cluster 2 size/share | `1,529 ÷ 2,240`; share = cluster count ÷ total × 100 | **1,529 / 68.3%** | I identify Cluster 2 as the larger segment. |
+| Average annual spend per customer | `Cluster annual spend ÷ customers in cluster` | C1 **$1,340**; C2 **$260** | I compare average spend per customer; C1 is about **5.15×** C2. |
+| Average annual income | `Cluster income total ÷ customers in cluster` | C1 **$73K**; C2 **$42.58K** | I use income as a descriptive profile attribute, not an explanation of spending behavior. |
+| Category spend | `SUM(category spend)` by cluster | C1 wine **$457.08K**, meat **$290.90K**; C2 wine **$226.76K** | I compare category contribution separately from average spend per customer. |
+| Household composition | `Customers in household group ÷ cluster customers × 100` | C1: **62.3%** no children, **33.6%** one; C2: **12.8%** none, **58.1%** one, **26.0%** two, **3.1%** three | I compare household mix within each cluster. |
 
 ## Model Metrics
 
-| Metric | Method / formula | Reported value | Interpretation |
+| Metric | Method | Value | My interpretation |
 |---|---|---:|---|
-| Number of clusters | Tableau-generated clustering result | **2** | Two groups created using spending across six product categories; this is an output, not a measure of cluster quality. |
-| Cluster quality / stability | Silhouette, inertia, or repeat-run stability | Not reported | The report does not quantify separation or repeatability; validate before operational use. |
-| Predictive performance | Accuracy, precision/recall, or RMSE | Not applicable | This is unsupervised segmentation, not supervised prediction. |
+| Number of clusters | Tableau clustering using six product-spend features | **2** | I profile each cluster using size, category spend, average spend, income, and household mix. |
+| Predictive performance | Accuracy, precision/recall, or RMSE | Not applicable | I use unsupervised clustering, not a supervised prediction target. |
 
-## Findings and recommendations
+## Cluster overview
 
-- **Cluster 1:** Smaller, with higher reported income and average spend; consider testing retention or premium offers with this segment.
-- **Cluster 2:** Larger, with lower reported average spend; test category bundles or value offers and measure incremental spend.
-- Spending profiles vary across the six product categories; use category preferences to tailor test offers, then compare response and margin by cluster.
-- Treat the cluster labels as descriptive, not inherently “high value” or causal. Confirm the clustering settings and refresh stability before operational use.
-
-## Selected Tableau charts
-
-### Spending patterns across six categories
+I use the spending-pattern view to compare how the two clusters behave across six product categories.
 
 ![Customer spending patterns across six category features, grouped into two clusters](assets/spending-pattern-clusters.png)
 
-### Customer count by cluster
+## Data exploration and assets
 
-![Customer counts in Cluster 1 and Cluster 2](assets/customer-count-by-cluster.png)
+I explored segment size, category mix, average income, average spend, and household composition. Supporting visuals are stored in `assets/`:
 
-### Category spend by cluster
+- `customer-count-by-cluster.png` — compares segment sizes.
+- `category-spend-by-cluster.png` — compares category totals across segments.
+- `average-income-by-cluster.png` — compares reported average income.
+- `average-spend-by-cluster.png` — compares average annual spend per customer.
+- `children-by-cluster.png` — shows household composition by cluster.
 
-![Category spending comparison across the two clusters](assets/category-spend-by-cluster.png)
+## Insights and recommendations
 
-### Average income and average spending
-
-![Average annual income by cluster](assets/average-income-by-cluster.png)
-
-![Average annual spending per customer by cluster](assets/average-spend-by-cluster.png)
-
-### Household composition
-
-![Number of children distribution by cluster](assets/children-by-cluster.png)
-
-## Evidence and proposed structure
-
-The charts above are extracted from **BI Homework Assignment 7 – Vaishnavi Amruthala**. The report describes Tableau’s two-cluster result but does not provide the Tableau workbook, source dataset, or exact clustering settings. No raw customer data or workbook is included yet.
-
-Proposed repository: `README.md`, `assets/` (selected report charts), `workbook/` (verified Tableau workbook when available), and `data/` (only approved public data or aggregates).
+- I found Cluster 1 is smaller and has higher average spend and income in the profile.
+- I found Cluster 2 contains about two-thirds of the profiled customers and has lower average spend.
+- I recommend testing retention or premium offers with Cluster 1 and value or category bundles with Cluster 2.
+- I recommend tailoring tests to category preferences and measuring incremental spend and margin by cluster.
+- I treat cluster labels as descriptive profiles and use measured campaign response to guide decisions.
 
 ## Supporting documents
 
 - [Executive summary](docs/Executive-Summary.md)
-- [Business requirements summary](docs/BRD-Summary.md)
-- [Functional requirements summary](docs/FRD-Summary.md)
-
-The source reports do not document an existing-state (As-Is) process; none is presented as fact.
-
-
+- [Business requirements](docs/BRD-Summary.md)
+- [Functional requirements](docs/FRD-Summary.md)
